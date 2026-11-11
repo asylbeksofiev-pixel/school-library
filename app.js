@@ -537,7 +537,9 @@
     document.querySelectorAll('.nav a').forEach(function (a) {
       a.classList.toggle('active', a.getAttribute('data-route') === name);
     });
-    document.title = (name === 'home' ? '' : (document.querySelector('.nav a.active') || {}).textContent + ' · ') + 'Школьная библиотека';
+    var act = document.querySelector('.nav a.active');
+    var label = act ? act.textContent.replace(act.querySelector('.ico').textContent, '').trim() : '';
+    document.title = (name === 'home' || !label ? '' : label + ' · ') + 'Школьная библиотека';
     bind(name);
     window.scrollTo(0, 0);
   }
